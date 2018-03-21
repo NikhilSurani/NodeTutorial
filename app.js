@@ -1,4 +1,4 @@
-console.log("starting app.js");
+// console.log("starting app.js");
 // import moduls/file
 const notes = require("./notes");
 const fs = require('fs');
@@ -9,10 +9,10 @@ const argv = yargs.argv;
 
 // var command = process.argv[2];
 var command = argv._[0];
-console.log("Command: " + command);
+// console.log("Command: " + command);
 
 // console.log("Process: ", process.argv);
-console.log("YARG:", argv);
+// console.log("YARG:", argv);
 
 if (command === 'add') {
     var note  = notes.addNote(argv.title, argv.body);
@@ -26,7 +26,11 @@ if (command === 'add') {
 
 
 } else if (command === 'list') {
-    notes.getList();
+    var allNotes = notes.getList();
+    console.log(`Prining ${allNotes.length} notes.`);
+    allNotes.forEach((note) => {
+        notes.logNote(note);
+    });
 
 } else if (command == 'read') {
     var readNote = notes.readNote(argv.title);   
